@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Address;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AddressController extends Controller
 {
@@ -11,10 +12,13 @@ class AddressController extends Controller
      */
     public function index()
     {
+        // show all address of the user
+
 
        return view('addresses.index',[
             'user'  => auth()->user()
        ]);
+
     }
 
     /**
@@ -41,13 +45,14 @@ class AddressController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+/**
+ * Display the specified resource.
+ */
+public function show(Address $address)
+{
+    //
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -78,6 +83,9 @@ class AddressController extends Controller
     {
         $request->user()->address()->delete();
 
+        //dd($request);
+
         return redirect()->route('address.index');
-    }
+
+       }
 }
